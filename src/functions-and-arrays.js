@@ -69,21 +69,64 @@ function sum(array) {
 }
 
 
-
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(numberArray) {
+  if (numberArray.length == 0){
+    return null;
+  } else {
+    let sum = 0;
+    let counter = 0;
+    for (i=0; i < numberArray.length; i++){
+      sum += numberArray[i];
+      counter ++;
+    }
+    return sum/counter;
+  }
+}
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(wordsArr) {
+  if (wordsArr.length == 0){
+    return null;
+  } else {
+    let sum = 0;
+    let counter = 0;
+    for (i=0; i < wordsArr.length; i++){
+      sum += wordsArr[i].length;
+      counter ++;
+    }
+    return sum/counter;
+  }
+}
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(array) {
+  if (array.length == 0){
+    return null;
+  } else {
+    let sum = 0;
+    let counter = 0;
+    for (i=0; i < array.length; i++){
+      if (typeof array[i] === 'string'){
+        num = array[i].length;
+        counter ++;    
+      } else if (typeof array[i] === 'number' || typeof array[i] === "boolean"){
+        num = array[i];
+        counter ++;
+      } else {
+        throw "Unsupported data type sir or ma'am" 
+      }
+      sum += num
+    }
+    return parseFloat((sum/counter).toFixed(2));
+  }
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -100,14 +143,37 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(array) {
+  if (array.length == 0){
+    return null;
+  }
+  let unique = []
+  for (i=0; i<array.length; i++){
+    if (unique.includes(array[i])){
+      continue
+    } else {
+      unique.push(array[i])
+    }
+  }
+  return unique
+}
+
 
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(array,word) {
+  if (array.length == 0){
+    return null;
+  }
+  if (array.includes(word)){
+    return true;
+  } else {
+    return false;
+  }
+}
 
 
 
@@ -126,7 +192,12 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(array,word) {
+  if (array.length == 0){
+    return 0;
+  }
+  return array.filter(v => v == word).length
+}
 
 
 
@@ -154,8 +225,16 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
-
+function greatestProduct(matrix) {
+  flatten = []
+  for (row =0; matrix.length; row ++){
+    for(num = 0; matrix[row].length; num++){
+      flatten.push(matrix[row][num])
+    }
+  }
+  let greater4 = flatten.sort((a,b)=>b-a).slice(1,5)
+  return greater4.reduce((a,b)=>a*b)
+}
 
 
 
