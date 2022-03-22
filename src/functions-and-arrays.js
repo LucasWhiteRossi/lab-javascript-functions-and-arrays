@@ -226,15 +226,23 @@ const matrix = [
 ];
 
 function greatestProduct(matrix) {
-  flatten = []
-  for (row =0; matrix.length; row ++){
-    for(num = 0; matrix[row].length; num++){
-      flatten.push(matrix[row][num])
+  results = []
+  //horizontal products:
+  for (row =0; row < matrix.length; row++){
+    for (num=0; num < matrix[row].length - 3; num++){
+      results.push(matrix[row].slice(num,num+4).reduce((a,b)=>a*b))
     }
   }
-  let greater4 = flatten.sort((a,b)=>b-a).slice(1,5)
-  return greater4.reduce((a,b)=>a*b)
+  //vertical products:
+  for (row =0; row < matrix.length-3; row++){
+    for (num=0; num < matrix[row].length; num++){
+      results.push(matrix[row][num]*matrix[row+1][num]*matrix[row+2][num]*matrix[row+3][num])
+    }
+  }
+  //sorts from greater to lower and return the first of the products
+  return results.sort((a,b)=>b-a)[0]
 }
+
 
 
 
